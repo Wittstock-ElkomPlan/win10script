@@ -190,6 +190,9 @@ $tweaks = @(
 	
 	"DisableTaskbarGrouping",
 	"ShowAllIconsInNotificationArea",
+	"HideTaskViewButton",
+	"HideCortanaButton",
+	#"RemoveStoreFromTaskbar",
 	"DisableAutostartOneDrive",
 	"DisableAutostartSkype",
 	"DisableFastboot",
@@ -256,9 +259,24 @@ Function DisableTaskbarGrouping {
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -Type DWord -Value 0 	
 }
 
+Function HideTaskViewButton {
+	Write-Output "HideTaskViewButton..."
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Type DWord -Value 0 	
+}
+
+Function HideCortanaButton {
+	Write-Output "HideCortanaButton..."
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowCortanaButton" -Type DWord -Value 0 	
+}
+
 Function ShowAllIconsInNotificationArea {
 	Write-Output "ShowAllIconsInNotificationArea..."
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0 	
+}
+
+Function RemoveStoreFromTaskbar {
+	Write-Output "RemoveStoreFromTaskbar..."
+	del /f "%appdata%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\*.lnk"
 }
 
 Function DisableAutostartOneDrive {
