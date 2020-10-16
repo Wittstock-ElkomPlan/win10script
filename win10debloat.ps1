@@ -32,7 +32,11 @@ $tweaks = @(
 	### External Program Setup
 	"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
 	"InstallAdobe",
-	
+	"InstallOpenShell",
+	"InstallFirefox",
+	"InstallVLC",
+	"InstallWinrar",
+	"InstallTotalcommander",
 
 	### Windows Apps
 	#"DebloatAll",
@@ -209,6 +213,31 @@ Function InstallTitusProgs {
 Function InstallAdobe {
 	Write-Output "Installing Adobe Acrobat Reader"
 	choco install adobereader -y
+}
+
+Function InstallOpenShell {
+	Write-Output "Installing open-shell"
+	choco install open-shell
+}
+
+Function InstallFirefox {
+	Write-Output "Installing firefox"
+	choco install firefox --params "/l:de /RemoveDistributionDir"
+}
+
+Function InstallVLC {
+	Write-Output "Installing VLC"
+	choco install vlc --params "/Language:de"
+}
+
+Function InstallWinrar {
+	Write-Output "Installing winrar"
+	choco install winrar
+}
+
+Function InstallTotalcommander {
+	Write-Output "Installing totalcommander"
+	choco install totalcommander --params '/DesktopIcon /InstallPath=%programfiles(x86)%\totalcmd'
 }
 
 #########
