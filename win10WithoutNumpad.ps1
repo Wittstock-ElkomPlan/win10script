@@ -248,6 +248,22 @@ Function InstallWinrar {
 Function InstallTotalcommander {
 	Write-Output "Installing totalcommander"
 	choco install totalcommander --params '/DesktopIcon /InstallPath=%programfiles(x86)%\totalcmd'
+	$path = "%APPDATA%\GHISLER"
+	If(!(test-path $path))
+	{
+      	New-Item -ItemType Directory -Force -Path $path
+	}
+	Start-BitsTransfer -Source "https://raw.githubusercontent.com/Wittstock-ElkomPlan/win10script/master/wincmd.ini" -Destination %APPDATA%\GHISLER\wincmd.ini
+}
+
+Function InstallRemoteTools {
+	Write-Output "Installing RemoteTools"	
+	$path = "C:\_Programme"
+	If(!(test-path $path))
+	{
+      	New-Item -ItemType Directory -Force -Path $path
+	}
+	Start-BitsTransfer -Source "https://get.teamviewer.com/ctry3aj" -Destination C:\_Programme\QS.exe
 }
 
 #########
