@@ -192,7 +192,14 @@ $tweaks = @(
 	"ShowAllIconsInNotificationArea",
 	"DisableAutostartOneDrive",
 	"DisableAutostartSkype",
-	"DisableFastboot"
+	"DisableFastboot",
+	"EnergyHighPerformance",
+	"DisableUDPonRemoteDesktop",
+	#"EnableNumpad",
+	"Netzwerkverbindungen",
+	"EnableNetFx3",
+	"ChangeDriveLabelC"
+	
 )
 
 #########
@@ -246,7 +253,7 @@ Function InstallTotalcommander {
 
 Function DisableTaskbarGrouping {
 	Write-Output "DisableTaskbarGrouping..."
-	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarGlomLevel" -Name "TaskbarGlomLevel" -Type DWord -Value 0 	
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -Type DWord -Value 0 	
 }
 
 Function ShowAllIconsInNotificationArea {
@@ -267,6 +274,47 @@ Function DisableAutostartSkype {
 Function DisableFastboot {
 	Write-Output "DisableDisableFastboot..."
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name "HiberbootEnabled" -Type DWord -Value 0 	
+}
+
+Function EnergyHighPerformance {
+	$schemes = powercfg /L
+	if ($schemes -match "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c") 
+		{
+		Write-Output "power scheme High Performance exists"
+		} else {		
+		Write-Output "add power scheme High Performance"
+		powercfg -duplicatescheme 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c"
+		}		
+	"Power Button is Shutdown"
+	powercfg -setdcvalueindex 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 3
+	powercfg -setacvalueindex 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 3
+	Write-Host "Setting power scheme to High Performance" 
+        PowerCfg -s 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c	
+}
+
+Function DisableUDPonRemoteDesktop {
+	Write-Output "DisableUDPonRemoteDesktop..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Client" -Name "fClientDisableUDP" -Type DWord -Value 1 	
+}
+
+Function EnableNumpad {
+	Write-Output "EnableNumpad..."
+	Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type REG_SZ -Value 2147483650 	
+}
+
+Function Netzwerkverbindungen {
+	Write-Output "Netzwerkverbindungen als Admin..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLinkedConnections" -Type DWord -Value 1 	
+}
+
+Function EnableNetFx3 {
+	Write-Output "Enable .net Framework 3.5"
+	Dism /online /Enable-Feature /FeatureName:"NetFx3"	
+}
+
+Function ChangeDriveLabelC {
+	Write-Output "Change Drive Label OS"
+	Set-Volume -DriveLetter C -NewFileSystemLabel "OS"	
 }
 
 ##########
