@@ -37,6 +37,7 @@ $tweaks = @(
 	"InstallVLC",
 	"InstallWinrar",
 	"InstallTotalcommander",
+	"InstallRemoteTools",
 
 	### Windows Apps
 	#"DebloatAll",
@@ -227,27 +228,27 @@ Function InstallAdobe {
 
 Function InstallOpenShell {
 	Write-Output "Installing open-shell"
-	choco install open-shell
+	choco install open-shell -y
 }
 
 Function InstallFirefox {
 	Write-Output "Installing firefox"
-	choco install firefox --params "/l:de /RemoveDistributionDir"
+	choco install firefox -y --params "/l:de /RemoveDistributionDir" 
 }
 
 Function InstallVLC {
 	Write-Output "Installing VLC"
-	choco install vlc --params "/Language:de"
+	choco install vlc -y --params "/Language:de"
 }
 
 Function InstallWinrar {
 	Write-Output "Installing winrar"
-	choco install winrar
+	choco install winrar -y
 }
 
 Function InstallTotalcommander {
 	Write-Output "Installing totalcommander"
-	choco install totalcommander --params '/DesktopIcon /InstallPath=%programfiles(x86)%\totalcmd'
+	choco install totalcommander -y --params '/DesktopIcon /InstallPath=%programfiles(x86)%\totalcmd'
 	$path = "%APPDATA%\GHISLER"
 	If(!(test-path $path))
 	{
