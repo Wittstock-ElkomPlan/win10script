@@ -322,7 +322,7 @@ Function EnergyHighPerformance {
 		Write-Output "power scheme High Performance exists"
 		} else {		
 		Write-Output "add power scheme High Performance"
-		powercfg -duplicatescheme 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c"
+		powercfg -duplicatescheme "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c"
 		}		
 	"Power Button is Shutdown"
 	powercfg -setdcvalueindex 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c 4f971e89-eebd-4455-a8de-9e59040e7347 7648efa3-dd9c-4e3e-b566-50f929386280 3
