@@ -260,10 +260,15 @@ Function InstallRemoteTools {
 	Write-Output "Installing RemoteTools"	
 	$path = "C:\_Programme"
 	If(!(test-path $path))
-	{
-      	New-Item -ItemType Directory -Force -Path $path
-	}
-	Start-BitsTransfer -Source "https://get.teamviewer.com/ctry3aj" -Destination C:\_Programme\QS.exe
+		{
+      		New-Item -ItemType Directory -Force -Path $path
+		}
+	curl -Uri "https://customdesign.teamviewer.com/download/version_15x/ctry3aj_windows/TeamViewerQS.exe" -OutFile "C:\_Programme\Teamviewer ELKOM-PLAN.exe"
+	cp "C:\_Programme\Teamviewer ELKOM-PLAN.exe" "C:\Users\Public\Desktop\"
+
+
+	curl -Uri "https://www.elkom-plan.de/storage/downloads/EP-Client6.exe" -OutFile "C:\_Programme\ELKOM-PLAN Fernwartung.exe"
+	cp "C:\_Programme\ELKOM-PLAN Fernwartung.exe" "C:\Users\Public\Desktop\"
 }
 
 #########
