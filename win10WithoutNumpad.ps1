@@ -283,7 +283,7 @@ Function InstallRemoteTools {
 
 Function DisableTaskbarGrouping {
 	Write-Output "DisableTaskbarGrouping..."
-	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -Type DWord -Value 0 	
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -Type DWord -Value 2 	
 }
 
 Function HideTaskViewButton {
