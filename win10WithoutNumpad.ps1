@@ -260,6 +260,7 @@ Function InstallTotalcommander {
       	New-Item -ItemType Directory -Force -Path $path
 	}
 	Start-BitsTransfer -Source "https://raw.githubusercontent.com/Wittstock-ElkomPlan/win10script/master/wincmd.ini" -Destination "$env:APPDATA\GHISLER\wincmd.ini"
+	rm "C:\Users\Public\Desktop\Total Commander 64 bit.lnk"
 }
 
 Function InstallRemoteTools {
