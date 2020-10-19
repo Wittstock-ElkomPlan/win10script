@@ -193,7 +193,7 @@ $tweaks = @(
 	"ShowAllIconsInNotificationArea",
 	"HideTaskViewButton",
 	"HideCortanaButton",
-	#"RemoveStoreFromTaskbar",
+	"RemoveStoreFromTaskbar",
 	"DisableAutostartOneDrive",
 	"DisableAutostartSkype",
 	"DisableFastboot",
@@ -303,7 +303,12 @@ Function ShowAllIconsInNotificationArea {
 
 Function RemoveStoreFromTaskbar {
 	Write-Output "RemoveStoreFromTaskbar..."
-	del /f "%appdata%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\*.lnk"
+	$appname = "Microsoft Edge"
+	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'Unpin from taskbar|Von Taskleiste lösen'} | %{$_.DoIt(); $exec = $true}
+	$appname = "Microsoft Store"
+	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'Unpin from taskbar|Von Taskleiste lösen'} | %{$_.DoIt(); $exec = $true}
+	$appname = "Mail"
+	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'Unpin from taskbar|Von Taskleiste lösen'} | %{$_.DoIt(); $exec = $true}
 }
 
 Function DisableAutostartOneDrive {
