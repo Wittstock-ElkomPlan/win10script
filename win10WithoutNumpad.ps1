@@ -248,7 +248,8 @@ Function InstallVLC {
 
 Function InstallWinrar {
 	Write-Output "Installing winrar"
-	choco install winrar -y
+	choco install winrar -y	
+	Set-ItemProperty -Path "HKCU:\Software\WinRAR\Setup" -Name "CascadedMenu" -Type DWord -Value 1 
 }
 
 Function InstallTotalcommander {
@@ -270,7 +271,7 @@ Function InstallRemoteTools {
 		{
       		New-Item -ItemType Directory -Force -Path $path
 		}
-	curl -Uri "https://customdesign.teamviewer.com/download/version_15x/ctry3aj_windows/TeamViewerQS.exe" -OutFile "C:\_Programme\Teamviewer ELKOM-PLAN.exe"
+	curl -Uri "https://www.elkom-plan.de/storage/downloads/ELKOM-PLAN Teamviewer.exe" -OutFile "C:\_Programme\Teamviewer ELKOM-PLAN.exe"
 	cp "C:\_Programme\Teamviewer ELKOM-PLAN.exe" "C:\Users\Public\Desktop\"
 
 
@@ -303,14 +304,22 @@ Function ShowAllIconsInNotificationArea {
 }
 
 Function RemoveStoreFromTaskbar {
-	Write-Output "RemoveStoreFromTaskbar..."
+	Write-Output "RemoveEdgeFromTaskbar..."
 	$appname = "Microsoft Edge"
 	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'Unpin from taskbar|Von Taskleiste lösen'} | %{$_.DoIt(); $exec = $true}
+	Write-Output "RemoveStoreFromTaskbar..."
 	$appname = "Microsoft Store"
 	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'Unpin from taskbar|Von Taskleiste lösen'} | %{$_.DoIt(); $exec = $true}
+	Write-Output "RemoveMailFromTaskbar..."
 	$appname = "Mail"
 	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'Unpin from taskbar|Von Taskleiste lösen'} | %{$_.DoIt(); $exec = $true}
 }
+
+Function HideSearchBoxinTaskbar {
+	Write-Output "HideHideSearchBoxinTaskbar..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0 	
+}
+
 
 Function DisableAutostartOneDrive {
 	Write-Output "DisableAutostartOneDrive..."
