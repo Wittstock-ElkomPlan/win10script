@@ -26,6 +26,7 @@
 ##########
 # Default preset
 $tweaks = @(
+	"RemoveStoreFromTaskbar",
 	### Require administrator privileges ###
 	"RequireAdmin",
 
