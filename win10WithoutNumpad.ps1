@@ -202,6 +202,7 @@ $tweaks = @(
 	"Netzwerkverbindungen",
 	"EnableNetFx3",
 	"ChangeDriveLabelC",
+	"ChangeDefaultApps",
 	
 	### Auxiliary Functions ###
 	"WaitForKey",
@@ -285,6 +286,17 @@ Function InstallRemoteTools {
 #########
 # Recommended ELKOM changes
 #########
+
+Function ChangeDefaultApps {
+	Write-Output "Setting Default Programs - Notepad++ Brave VLC IrFanView"
+	$path = "C:\_Programme"
+	If(!(test-path $path))
+		{
+      		New-Item -ItemType Directory -Force -Path $path
+		}
+	curl -Uri "https://raw.githubusercontent.com/Wittstock-ElkomPlan/win10script/master/defaultAppAssociations.xml" -OutFile "C:\_Programme\MyDefaultAppAssociations.xml"
+	dism /online /Import-DefaultAppAssociations:"C:\_Programme\MyDefaultAppAssociations.xml"
+}
 
 Function DisableTaskbarGrouping {
 	Write-Output "DisableTaskbarGrouping..."
