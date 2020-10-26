@@ -26,6 +26,7 @@
 ##########
 # Default preset
 $tweaks = @(
+	"CreateRestorePoint",
 	"RemoveStoreFromTaskbar",
 	### Require administrator privileges ###
 	"RequireAdmin",
@@ -186,10 +187,7 @@ $tweaks = @(
 	"UnpinStartMenuTiles",
 	#"UnpinTaskbarIcons",
 
-	### Auxiliary Functions ###
-	#"WaitForKey"
-	#"Restart"
-	
+		
 	"DisableTaskbarGrouping",
 	"ShowAllIconsInNotificationArea",
 	"HideTaskViewButton",
@@ -200,10 +198,14 @@ $tweaks = @(
 	"DisableFastboot",
 	"EnergyHighPerformance",
 	"DisableUDPonRemoteDesktop",
-	#"EnableNumpad",
+	"EnableNumpad",
 	"Netzwerkverbindungen",
 	"EnableNetFx3",
-	"ChangeDriveLabelC"
+	"ChangeDriveLabelC",
+	
+	### Auxiliary Functions ###
+	"WaitForKey",
+	"Restart"
 	
 )
 
@@ -360,7 +362,25 @@ Function DisableUDPonRemoteDesktop {
 
 Function EnableNumpad {
 	Write-Output "EnableNumpad..."
-	Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type REG_SZ -Value 2147483650 	
+	do
+ {
+    Clear-Host
+    Write-Host "================ Do You Want to Enable Numpad on Windows Start? ================"
+    Write-Host "Y: Press 'Y' to do this."
+    Write-Host "N: Press 'N' to skip this."
+    #Write-Host "Q: Press 'Q' to stop the entire script."
+    $selection = Read-Host "Please make a selection"
+    switch ($selection)
+    {
+    'y' { 
+		Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type REG_SZ -Value 2147483650 	
+	}
+    'n' { Break }
+    #'q' { Exit  }
+    }
+ }
+ until ($selection -match "y" -or $selection -match "n" -or $selection -match "q")
+		
 }
 
 Function Netzwerkverbindungen {
@@ -2729,8 +2749,15 @@ Function DebloatAll {
         Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like $Bloat | Remove-AppxProvisionedPackage -Online
         Write-Output "Trying to remove $Bloat."
     }
+    
 }
 
+Function CreateRestorePoint {
+  	Write-Output "Creating Restore Point incase something bad happens"
+  	Enable-ComputerRestore -Drive "C:\"
+  	Checkpoint-Computer -Description "RestorePoint1" -RestorePointType "MODIFY_SETTINGS"
+}
+  
 ##########
 # Parse parameters and apply tweaks
 ##########
