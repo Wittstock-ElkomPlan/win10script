@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DefaultAssociations>
+  <Association Identifier=".3g2" ProgId="VLC.3g2" ApplicationName="VLC media player" />
+  <Association Identifier=".3gp" ProgId="VLC.3gp" ApplicationName="VLC media player" />
+  <Association Identifier=".3gp2" ProgId="VLC.3gp2" ApplicationName="VLC media player" />
+  <Association Identifier=".3gpp" ProgId="VLC.3gpp" ApplicationName="VLC media player" />  
+  <Association Identifier=".asf" ProgId="VLC.asf" ApplicationName="VLC media player" />
+  <Association Identifier=".asx" ProgId="VLC.asx" ApplicationName="VLC media player" />
+  <Association Identifier=".avi" ProgId="VLC.avi" ApplicationName="VLC media player" />
+  <Association Identifier=".m1v" ProgId="VLC.m1v" ApplicationName="VLC media player" />
+  <Association Identifier=".m2t" ProgId="VLC.m2t" ApplicationName="VLC media player" />
+  <Association Identifier=".m2ts" ProgId="VLC.m2ts" ApplicationName="VLC media player" />
+  <Association Identifier=".m4v" ProgId="VLC.m4v" ApplicationName="VLC media player" />
+  <Association Identifier=".mkv" ProgId="VLC.mkv" ApplicationName="VLC media player" />
+  <Association Identifier=".mov" ProgId="VLC.mov" ApplicationName="VLC media player" />
+  <Association Identifier=".MP2" ProgId="WMP11.AssocFile.MP3" ApplicationName="Windows Media Player" />
+  <Association Identifier=".mp2v" ProgId="VLC.mp2v" ApplicationName="VLC media player" />
+  <Association Identifier=".mp4" ProgId="VLC.mp4" ApplicationName="VLC media player" />
+  <Association Identifier=".mp4v" ProgId="VLC.mp4v" ApplicationName="VLC media player" />
+  <Association Identifier=".mpa" ProgId="VLC.mpa" ApplicationName="VLC media player" />
+  <Association Identifier=".MPE" ProgId="VLC.mpe" ApplicationName="VLC media player" />
+  <Association Identifier=".mpeg" ProgId="VLC.mpeg" ApplicationName="VLC media player" />
+  <Association Identifier=".mpg" ProgId="VLC.mpg" ApplicationName="VLC media player" />
+  <Association Identifier=".mpv2" ProgId="VLC.mpv2" ApplicationName="VLC media player" />
+  <Association Identifier=".mts" ProgId="VLC.mts" ApplicationName="VLC media player" />
+  <Association Identifier=".TS" ProgId="VLC.ts" ApplicationName="VLC media player" />
+  <Association Identifier=".TTS" ProgId="VLC.tts" ApplicationName="VLC media player" />  
+  <Association Identifier=".wmv" ProgId="VLC.wmv" ApplicationName="VLC media player" />
+  <Association Identifier=".wvx" ProgId="VLC.wvx" ApplicationName="VLC media player" />
+  <Association Identifier=".htm" ProgId="FirefoxHTML" ApplicationName="Firefox" />
+  <Association Identifier=".html" ProgId="FirefoxHTML" ApplicationName="Firefox" />
+  <Association Identifier="http" ProgId="FirefoxHTML" ApplicationName="Firefox" />
+  <Association Identifier="https" ProgId="FirefoxHTML" ApplicationName="Firefox" />
+  <Association Identifier=".pdf" ProgID="Acrobat.Document.DC" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".pdfxml" ProgID="Acrobat.pdfxml" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".acrobatsecuritysettings" ProgID="Acrobat.acrobatsecuritysettings" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".fdf" ProgID="Acrobat.FDFDoc" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".xfdf" ProgID="Acrobat.XFDFDoc" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".xdp" ProgID="Acrobat.XDPDoc" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".pdx" ProgID="PDXFileType" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".api" ProgID="Acrobat.Plugin" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".secstore" ProgID="Acrobat.SecStore" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".sequ" ProgID="Acrobat.Sequence" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".rmf" ProgID="Acrobat.RMFFile" ApplicationName="Adobe Acrobat DC" />
+	<Association Identifier=".bpdx" ProgID="AcrobatBPDXFileType" ApplicationName="Adobe Acrobat DC" />
+</DefaultAssociations>
