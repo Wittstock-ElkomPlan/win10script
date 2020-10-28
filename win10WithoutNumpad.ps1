@@ -197,14 +197,14 @@ $tweaks = @(
 	"DisableAutostartSkype",
 	"DisableFastboot",
 	"EnergyHighPerformance",
-	"DisableUDPonRemoteDesktop",
-	"EnableNumpad",
+	"DisableUDPonRemoteDesktop",	
 	"Netzwerkverbindungen",
 	"EnableNetFx3",
 	"ChangeDriveLabelC",
 	"ChangeDefaultApps",
 	
 	### Auxiliary Functions ###
+	"EnableNumpad",
 	"WaitForKey",
 	"Restart"
 	
@@ -2637,7 +2637,7 @@ Function RequireAdmin {
 
 # Wait for key press
 Function WaitForKey {
-	Write-Output "Press any key to continue..."
+	Write-Output "Setup complete, Check log for errors, Press any key to reboot..."
 	[Console]::ReadKey($true) | Out-Null
 }
 
