@@ -232,7 +232,7 @@ Function InstallTitusProgs {
 
 Function InstallAdobe {
 	Write-Output "Installing Adobe Acrobat Reader"
-	choco install adobereader -y
+	choco install adobereader -y -params "/DesktopIcon"
 }
 
 Function InstallOpenShell {
