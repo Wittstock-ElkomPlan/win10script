@@ -27,7 +27,6 @@
 # Default preset
 $tweaks = @(
 	"CreateRestorePoint",
-	"RemoveStoreFromTaskbar",
 	### Require administrator privileges ###
 	"RequireAdmin",
 
@@ -319,15 +318,14 @@ Function ShowAllIconsInNotificationArea {
 }
 
 Function RemoveStoreFromTaskbar {
-	Write-Output "RemoveEdgeFromTaskbar..."
-	$appname = "Microsoft Edge"
-	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'Unpin from taskbar|Von Taskleiste lösen'} | %{$_.DoIt(); $exec = $true}
-	Write-Output "RemoveStoreFromTaskbar..."
-	$appname = "Microsoft Store"
-	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'Unpin from taskbar|Von Taskleiste lösen'} | %{$_.DoIt(); $exec = $true}
-	Write-Output "RemoveMailFromTaskbar..."
-	$appname = "Mail"
-	((New-Object -Com Shell.Application).NameSpace('shell:::{4234d49b-0245-4df3-b780-3893943456e1}').Items() | ?{$_.Name -eq $appname}).Verbs() | ?{$_.Name.replace('&','') -match 'Unpin from taskbar|Von Taskleiste lösen'} | %{$_.DoIt(); $exec = $true}
+	curl -Uri "https://raw.githubusercontent.com/Wittstock-ElkomPlan/win10script/master/RemoveFromTaskbar.ps1" -OutFile "C:\_Programme\RemoveFromTaskbar.ps1"
+	$key=RemoveFromTaskbar
+	$Command = '%systemroot%\System32\WindowsPowerShell\v1.0\powershell.exe -executionpolicy bypass -file "C:\_Programme\RemoveFromTaskbar.ps1"'
+  	if (-not ((Get-Item -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce).$KeyName ))	{
+        	New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name $KeyName -Value $Command -PropertyType ExpandString
+    	} else {
+        	Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name $KeyName -Value $Command -PropertyType ExpandString
+    	}	
 }
 
 Function HideSearchBoxinTaskbar {
