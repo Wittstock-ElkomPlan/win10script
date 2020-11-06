@@ -30,15 +30,7 @@ $tweaks = @(
 	### Require administrator privileges ###
 	"RequireAdmin",
 
-	### External Program Setup
-	"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
-	"InstallAdobe",
-	"InstallOpenShell",
-	"InstallFirefox",
-	"InstallVLC",
-	"InstallWinrar",
-	"InstallTotalcommander",
-	"InstallRemoteTools",
+	
 
 	### Windows Apps
 	#"DebloatAll",
@@ -134,9 +126,8 @@ $tweaks = @(
 	# "ShowHiddenFiles",              # "HideHiddenFiles",
 	#"HideSyncNotifications"         # "ShowSyncNotifications",
 	# "HideRecentShortcuts",          # "ShowRecentShortcuts",
-	#"SetExplorerThisPC",            # "SetExplorerQuickAccess",
-	#"HideThisPCFromDesktop",	
-	"ShowThisPCOnDesktop",
+	#"SetExplorerThisPC",            # "SetExplorerQuickAccess",		
+	"ShowThisPCOnDesktop", #"HideThisPCFromDesktop",
 	"ShowUserFolderOnDesktop",    # "HideUserFolderFromDesktop",
 	# "HideDesktopFromThisPC",        # "ShowDesktopInThisPC",
 	# "HideDesktopFromExplorer",    # "ShowDesktopInExplorer",
@@ -186,12 +177,21 @@ $tweaks = @(
 	"UnpinStartMenuTiles",
 	#"UnpinTaskbarIcons",
 
+	### External Program Setup
+	"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
+	"InstallAdobe",
+	"InstallOpenShell",
+	"InstallFirefox",
+	"InstallVLC",
+	"InstallWinrar",
+	"InstallTotalcommander",
+	"InstallRemoteTools",
 		
+	## Elkom
 	"DisableTaskbarGrouping",
 	"ShowAllIconsInNotificationArea",
 	"HideTaskViewButton",
 	"HideCortanaButton",
-	"RemoveStoreFromTaskbar",
 	"DisableAutostartOneDrive",
 	"DisableAutostartSkype",
 	"DisableFastboot",
@@ -315,17 +315,6 @@ Function HideCortanaButton {
 Function ShowAllIconsInNotificationArea {
 	Write-Output "ShowAllIconsInNotificationArea..."
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0 	
-}
-
-Function RemoveStoreFromTaskbar {
-	curl -Uri "https://raw.githubusercontent.com/Wittstock-ElkomPlan/win10script/master/RemoveFromTaskbar.ps1" -OutFile "C:\_Programme\RemoveFromTaskbar.ps1"
-	$key=RemoveFromTaskbar
-	$Command = '%systemroot%\System32\WindowsPowerShell\v1.0\powershell.exe -executionpolicy bypass -file "C:\_Programme\RemoveFromTaskbar.ps1"'
-  	if (-not ((Get-Item -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce).$KeyName ))	{
-        	New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name $KeyName -Value $Command -PropertyType ExpandString
-    	} else {
-        	Set-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce' -Name $KeyName -Value $Command -PropertyType ExpandString
-    	}	
 }
 
 Function HideSearchBoxinTaskbar {
