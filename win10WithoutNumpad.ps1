@@ -29,7 +29,7 @@ $tweaks = @(
 	"CreateRestorePoint",
 	### Require administrator privileges ###
 	"RequireAdmin",
-
+	"EnableNumpad",
 	
 
 	### Windows Apps
@@ -203,7 +203,7 @@ $tweaks = @(
 	"ChangeDefaultApps",
 	
 	### Auxiliary Functions ###
-	"EnableNumpad",
+	
 	"WaitForKey",
 	"Restart"
 	
