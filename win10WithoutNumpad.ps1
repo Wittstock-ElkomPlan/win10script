@@ -205,8 +205,10 @@ $tweaks = @(
 	### Auxiliary Functions ###
 	
 	"WaitForKey",
-	"Restart"
+	"Restart",
 	
+	## OpenLibre, Zoom ##
+	"OL-Zoom"
 )
 
 #########
@@ -395,6 +397,30 @@ Function EnableNetFx3 {
 Function ChangeDriveLabelC {
 	Write-Output "Change Drive Label OS"
 	Set-Volume -DriveLetter C -NewFileSystemLabel "OS"	
+}
+
+Function OL-Zoom {
+	Write-Output "LibreOffice and Zoom install..."
+	do
+ {
+    Clear-Host
+    Write-Host "================ Do You Want to install LibreOffice and Zoom? ================"
+    Write-Host "Y: Press 'Y' to do this."
+    Write-Host "N: Press 'N' to skip this."
+    #Write-Host "Q: Press 'Q' to stop the entire script."
+    $selection = Read-Host "Please make a selection"
+    switch ($selection)
+    {
+    'y' { 
+		choco install libreoffice-fresh
+		choco install zoom
+	}
+    'n' { Break }
+    #'q' { Exit  }
+    }
+ }
+ until ($selection -match "y" -or $selection -match "n" -or $selection -match "q")
+		
 }
 
 ##########
