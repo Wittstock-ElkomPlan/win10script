@@ -415,8 +415,8 @@ Function LO-Zoom {
     switch ($selection)
     {
     'y' { 
-		choco install libreoffice-fresh
-		choco install zoom
+		choco install libreoffice-fresh -y
+		choco install zoom -y
 	}
     'n' { Break }
     #'q' { Exit  }
