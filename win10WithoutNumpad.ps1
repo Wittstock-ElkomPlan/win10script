@@ -179,6 +179,10 @@ $tweaks = @(
 
 	### External Program Setup
 	"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
+	## OpenLibre, Zoom ##
+	"LO-Zoom",
+	
+	
 	"InstallAdobe",
 	"InstallOpenShell",
 	"InstallFirefox",
@@ -205,10 +209,9 @@ $tweaks = @(
 	### Auxiliary Functions ###
 	
 	"WaitForKey",
-	"Restart",
+	"Restart"
 	
-	## OpenLibre, Zoom ##
-	"OL-Zoom"
+	
 )
 
 #########
@@ -399,7 +402,7 @@ Function ChangeDriveLabelC {
 	Set-Volume -DriveLetter C -NewFileSystemLabel "OS"	
 }
 
-Function OL-Zoom {
+Function LO-Zoom {
 	Write-Output "LibreOffice and Zoom install..."
 	do
  {
