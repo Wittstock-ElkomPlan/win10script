@@ -24,8 +24,11 @@
 #	- Added Debloat Microsoft Store Apps
 #
 ##########
+
+
 # Default preset
 $tweaks = @(
+	"AskQuestions",
 	"CreateRestorePoint",
 	### Require administrator privileges ###
 	"RequireAdmin",
@@ -180,7 +183,7 @@ $tweaks = @(
 	### External Program Setup
 	"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
 	## OpenLibre, Zoom ##
-	"LO-Zoom",
+	#"LO-Zoom",
 	
 	
 	"InstallAdobe",
@@ -402,28 +405,33 @@ Function ChangeDriveLabelC {
 	Set-Volume -DriveLetter C -NewFileSystemLabel "OS"	
 }
 
+Function AskQuestions {
+
+	Write-Output "LibreOffice and Zoom install..."
+	do {
+		Clear-Host
+		Write-Host "================ Do You Want to install LibreOffice and Zoom? ================"
+		Write-Host "Y: Press 'Y' to do this."
+		Write-Host "N: Press 'N' to skip this."
+		#Write-Host "Q: Press 'Q' to stop the entire script."
+		$selection = Read-Host "Please make a selection"
+		switch ($selection) {
+			'y' { 
+				$tweaks.Add('LO-Zoom')
+			}
+			'n' { Break }
+			#'q' { Exit  }
+		}
+	}
+  	until ($selection -match "y" -or $selection -match "n" -or $selection -match "q")
+		
+}
+
+}
 Function LO-Zoom {
 	Write-Output "LibreOffice and Zoom install..."
-	do
- {
-    Clear-Host
-    Write-Host "================ Do You Want to install LibreOffice and Zoom? ================"
-    Write-Host "Y: Press 'Y' to do this."
-    Write-Host "N: Press 'N' to skip this."
-    #Write-Host "Q: Press 'Q' to stop the entire script."
-    $selection = Read-Host "Please make a selection"
-    switch ($selection)
-    {
-    'y' { 
-		choco install libreoffice-fresh -y
-		choco install zoom -y
-	}
-    'n' { Break }
-    #'q' { Exit  }
-    }
- }
- until ($selection -match "y" -or $selection -match "n" -or $selection -match "q")
-		
+	choco install libreoffice-fresh -y
+	choco install zoom -y		
 }
 
 ##########
