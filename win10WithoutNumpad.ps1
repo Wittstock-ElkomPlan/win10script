@@ -427,7 +427,6 @@ Function AskQuestions {
 		
 }
 
-}
 Function LO-Zoom {
 	Write-Output "LibreOffice and Zoom install..."
 	choco install libreoffice-fresh -y
