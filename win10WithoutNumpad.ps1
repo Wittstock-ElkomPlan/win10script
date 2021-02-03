@@ -28,7 +28,7 @@
 
 # Default preset
 $tweaks = @(
-	"AskQuestions",
+	#"AskQuestions",
 	"CreateRestorePoint",
 	### Require administrator privileges ###
 	"RequireAdmin",
