@@ -209,6 +209,7 @@ $tweaks = @(
 	"ChangeDriveLabelC",
 	"ChangeDefaultApps",
 	"NoWinNotificationH2",
+	"DisableOffice365SimplifiedAccountCreation",
 	
 	### Auxiliary Functions ###
 	
@@ -339,6 +340,10 @@ Function DisableAutostartOneDrive {
 
 Function DisableAutostartSkype {
 	Write-Output "DisableAutostartSkype..."
+	$keypath = "HKCR:\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\Microsoft.SkypeApp_kzf8qxf38zg5c\SkypeStartup"
+	if (-not (Test-Path $keypath)){
+		New-Item -Path $keypath -ItemType Key
+	}
 	Set-ItemProperty -Path "HKCR:\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\Microsoft.SkypeApp_kzf8qxf38zg5c\SkypeStartup" -Name "State" -Type DWord -Value 1 	
 }
 
@@ -438,6 +443,21 @@ Function LO-Zoom {
 	Write-Output "LibreOffice and Zoom install..."
 	choco install libreoffice-fresh -y
 	choco install zoom -y		
+}
+
+Function DisableOffice365SimplifiedAccountCreation {
+	Write-Output "Disable Office 365 Simplified Account Creation..."
+	$keypath = "HKCU:\SOFTWARE\Microsoft\Office\16.0\Outlook\setup"
+	if (-not (Test-Path $keypath)){
+		New-Item -Path $keypath -ItemType Key
+	}
+	Set-ItemProperty -Path $keypath -Name "DisableOffice365SimplifiedAccountCreation" -Type DWord -Value 1 -Force
+
+	$keypath = "HKCU:\SOFTWARE\Policies\Microsoft\Office\16.0\Outlook\setup"
+	if (-not (Test-Path $keypath)){ 
+ 		New-Item -Path $keypath -ItemType Key
+	}
+	Set-ItemProperty -Path $keypath -Name "DisableOffice365SimplifiedAccountCreation" -Type DWord -Value 1 -Force
 }
 
 ##########
