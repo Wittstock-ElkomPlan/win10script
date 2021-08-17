@@ -340,6 +340,7 @@ Function DisableAutostartOneDrive {
 
 Function DisableAutostartSkype {
 	Write-Output "DisableAutostartSkype..."
+	New-PSDrive -PSProvider registry -Root HKEY_CLASSES_ROOT -Name HKCR
 	$keypath = "HKCR:\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\Microsoft.SkypeApp_kzf8qxf38zg5c\SkypeStartup"
 	if (-not (Test-Path $keypath)){
 		New-Item -Path $keypath -ItemType Key
@@ -386,7 +387,7 @@ Function EnableNumpad {
     switch ($selection)
     {
     'y' { 
-		Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type REG_SZ -Value 2147483650 	
+		Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type String -Value 2147483650 	
 	}
     'n' { Break }
     #'q' { Exit  }
@@ -412,8 +413,8 @@ Function ChangeDriveLabelC {
 }
 
 Function NoWinNotificationH2 {
-	Write-Output "NoWinNotificationH2..."
-	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\UserProfileEngagement" -Name "ScoobeSystemSettingEnabled" -Type DWord -Value 0 -Force
+	Write-Output "NoWinNotificationH2..."	
+	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\UserProfileEngagement" -Name "ScoobeSystemSettingEnabled" -Type DWord -Value 0 -Force
 	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-310093Enabled" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SubscribedContent-338389Enabled" -Type DWord -Value 0
 }
@@ -449,13 +450,13 @@ Function DisableOffice365SimplifiedAccountCreation {
 	Write-Output "Disable Office 365 Simplified Account Creation..."
 	$keypath = "HKCU:\SOFTWARE\Microsoft\Office\16.0\Outlook\setup"
 	if (-not (Test-Path $keypath)){
-		New-Item -Path $keypath -ItemType Key
+		New-Item -Path $keypath -ItemType Key -Force
 	}
 	Set-ItemProperty -Path $keypath -Name "DisableOffice365SimplifiedAccountCreation" -Type DWord -Value 1 -Force
 
 	$keypath = "HKCU:\SOFTWARE\Policies\Microsoft\Office\16.0\Outlook\setup"
 	if (-not (Test-Path $keypath)){ 
- 		New-Item -Path $keypath -ItemType Key
+ 		New-Item -Path $keypath -ItemType Key -Force
 	}
 	Set-ItemProperty -Path $keypath -Name "DisableOffice365SimplifiedAccountCreation" -Type DWord -Value 1 -Force
 }
