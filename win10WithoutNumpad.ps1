@@ -343,9 +343,9 @@ Function DisableAutostartSkype {
 	New-PSDrive -PSProvider registry -Root HKEY_CLASSES_ROOT -Name HKCR
 	$keypath = "HKCR:\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\Microsoft.SkypeApp_kzf8qxf38zg5c\SkypeStartup"
 	if (-not (Test-Path $keypath)){
-		New-Item -Path $keypath -ItemType Key
+		New-Item -Path $keypath -ItemType Key -Force
 	}
-	Set-ItemProperty -Path "HKCR:\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\Microsoft.SkypeApp_kzf8qxf38zg5c\SkypeStartup" -Name "State" -Type DWord -Value 1 	
+	Set-ItemProperty -Path "HKCR:\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\Microsoft.SkypeApp_kzf8qxf38zg5c\SkypeStartup" -Name "State" -Type DWord -Value 1 -Force
 }
 
 Function DisableFastboot {
