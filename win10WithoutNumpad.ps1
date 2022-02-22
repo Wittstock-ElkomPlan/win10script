@@ -468,23 +468,23 @@ Function DisableOffice365SimplifiedAccountCreation {
 
 Function DisableWin11Upgrade {
 	Write-Output "Disable Windows 11 Upgrades..."
-	$keypath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
-	if (-not (Test-Path $keypath)){
-		New-Item -Path $keypath -ItemType Key -Force
-	}
-	Set-ItemProperty -Path $keypath -Name "DisableOSUpgrade" -Type DWord -Value 1 -Force
+	#$keypath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
+	#if (-not (Test-Path $keypath)){
+	#	New-Item -Path $keypath -ItemType Key -Force
+	#}
+	#Set-ItemProperty -Path $keypath -Name "DisableOSUpgrade" -Type DWord -Value 1 -Force
 	
-	$keypath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\OSUpgrade"
-	if (-not (Test-Path $keypath)){
-		New-Item -Path $keypath -ItemType Key -Force
-	}
-	Set-ItemProperty -Path $keypath -Name "AllowOSUpgrade" -Type DWord -Value 0 -Force
+	#$keypath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\OSUpgrade"
+	#if (-not (Test-Path $keypath)){
+	#	New-Item -Path $keypath -ItemType Key -Force
+	#}
+	#Set-ItemProperty -Path $keypath -Name "AllowOSUpgrade" -Type DWord -Value 0 -Force
 	
-	$keypath = "HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore"
-	if (-not (Test-Path $keypath)){
-		New-Item -Path $keypath -ItemType Key -Force
-	}
-	Set-ItemProperty -Path $keypath -Name "DisableOSUpgrade" -Type DWord -Value 1 -Force
+	#$keypath = "HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore"
+	#if (-not (Test-Path $keypath)){
+	#	New-Item -Path $keypath -ItemType Key -Force
+	#}
+	#Set-ItemProperty -Path $keypath -Name "DisableOSUpgrade" -Type DWord -Value 1 -Force
 	
 	$keypath = "HKLM:\SYSTEM\Setup\UpgradeNotification"
 	if (-not (Test-Path $keypath)){
