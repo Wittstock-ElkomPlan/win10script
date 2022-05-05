@@ -237,7 +237,8 @@ Function InstallTitusProgs {
 		}	
 	Start-BitsTransfer -Source "https://raw.githubusercontent.com/ChrisTitusTech/win10script/master/ooshutup10.cfg" -Destination C:\_Programme\ooshutup10.cfg
 	Start-BitsTransfer -Source "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -Destination C:\_Programme\OOSU10.exe
-	C:\_Programme\OOSU10.exe ooshutup10.cfg /quiet
+	Start-Process -FilePath "C:\_Programme\OOSU10.exe" -ArgumentList "C:\_Programme\ooshutup10.cfg /quiet"
+
 }
 
 Function InstallAdobe {
@@ -275,7 +276,13 @@ Function InstallTotalcommander {
       	New-Item -ItemType Directory -Force -Path $path
 	}
 	Start-BitsTransfer -Source "https://raw.githubusercontent.com/Wittstock-ElkomPlan/win10script/master/wincmd.ini" -Destination "$env:APPDATA\GHISLER\wincmd.ini"
-	rm "C:\Users\Public\Desktop\Total Commander 64 bit.lnk"
+	if (Test-Path "$HOME\Desktop\Total Commander 64 bit.lnk") {
+		rm "$HOME\Desktop\Total Commander 64 bit.lnk"
+	}
+	if (Test-Path "C:\Users\Public\Desktop\Total Commander 64 bit.lnk") {
+		rm "C:\Users\Public\Desktop\Total Commander 64 bit.lnk"
+	}
+	
 }
 
 Function InstallRemoteTools {
@@ -387,8 +394,8 @@ Function EnableNumpad {
     $selection = Read-Host "Please make a selection"
     switch ($selection)
     {
-    'y' { 
-		Set-ItemProperty -Path "HKU:\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type String -Value 2147483650 	
+    'y' { 		 	
+		Set-ItemProperty -Path "REGISTRY::HKEY_USERS\.DEFAULT\Control Panel\Keyboard" -Name "InitialKeyboardIndicators" -Type String -Value 2147483650
 	}
     'n' { Break }
     #'q' { Exit  }
