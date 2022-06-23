@@ -471,6 +471,12 @@ Function DisableOffice365SimplifiedAccountCreation {
  		New-Item -Path $keypath -ItemType Key -Force
 	}
 	Set-ItemProperty -Path $keypath -Name "DisableOffice365SimplifiedAccountCreation" -Type DWord -Value 1 -Force
+	
+	$keypath = "HKCU:\Software\Microsoft\Office\16.0\Outlook\AutoDiscover"
+	if (-not (Test-Path $keypath)){ 
+ 		New-Item -Path $keypath -ItemType Key -Force
+	}
+	Set-ItemProperty -Path $keypath -Name "ExcludeExplicitO365Endpoint" -Type DWord -Value 1 -Force
 }
 
 Function DisableWin11Upgrade {
