@@ -476,7 +476,7 @@ Function DisableOffice365SimplifiedAccountCreation {
 	if (-not (Test-Path $keypath)){ 
  		New-Item -Path $keypath -ItemType Key -Force
 	}
-	Set-ItemProperty -Path $keypath -Name "ExcludeExplicitO365Endpoint" -Type DWord -Value 1 -Force
+	Set-ItemProperty -Path $keypath -Name "ExcludeExplicitO365Endpoint" -Type DWord -Value 0 -Force
 }
 
 Function DisableWin11Upgrade {
