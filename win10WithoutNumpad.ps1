@@ -211,7 +211,7 @@ $tweaks = @(
 	"NoWinNotificationH2",
 	"DisableOffice365SimplifiedAccountCreation",
 	"DisableWin11Upgrade",
- 	"GetBitLockerStatus",
+ 	"GetBitLockerStatus"
 	
 	### Auxiliary Functions ###
 	
