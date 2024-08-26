@@ -210,6 +210,7 @@ $tweaks = @(
 	"ChangeDefaultApps",
 	"NoWinNotificationH2",
 	"DisableOffice365SimplifiedAccountCreation",
+ 	"HideNewOutlookToggle",
 	"DisableWin11Upgrade",
  	"GetBitLockerStatus",
 	
@@ -478,6 +479,15 @@ Function DisableOffice365SimplifiedAccountCreation {
  		New-Item -Path $keypath -ItemType Key -Force
 	}
 	Set-ItemProperty -Path $keypath -Name "ExcludeExplicitO365Endpoint" -Type DWord -Value 0 -Force
+}
+
+Function HideNewOutlookToggle {
+	Write-Output "HideNewOutlookToggle..."
+	$keypath = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\General"
+	if (-not (Test-Path $keypath)){
+		New-Item -Path $keypath -ItemType Key -Force
+	}
+	Set-ItemProperty -Path $keypath -Name "HideNewOutlookToggle" -Type DWord -Value 1 -Force
 }
 
 Function DisableWin11Upgrade {
